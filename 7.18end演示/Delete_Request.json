@@ -1,0 +1,7 @@
+{ 
+  "deletePerformer": "王XX",
+  "Log_Type": "Delete_Request",
+  "infoID": "u100000038",
+  "delete_granularity":"gender"
+
+          }
