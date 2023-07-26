@@ -79,8 +79,13 @@ def send_packet_tcp(host, port, packet):
     # 发送数据包
     s.sendall(packet)
 
+    # 接收服务器的响应
+    response = s.recv(4096)
+
     # 关闭连接
     s.close()
+
+    return response
 
 
 # print(create_packet_header("0x01","0x40","0x0001","0x00","0x00","0x00000000","0x00000011"))

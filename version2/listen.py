@@ -30,8 +30,12 @@ def start_server(host, port):
                 break
             print('Received data:', data)
 
+            # 在这里我们将响应数据发送回客户端
+            response = "Server response: your data has been received."
+            conn.sendall(response.encode())
+
         # 关闭连接
         conn.close()
 
-# 使用localhost和8000端口启动服务器
+# 使用localhost和8888端口启动服务器
 start_server('localhost', 8888)

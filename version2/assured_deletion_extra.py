@@ -7,6 +7,7 @@ import datetime
 import mysql.connector
 import util
 import struct
+import hashlib
 
 serve=Flask(__name__)
 @serve.route('/delete',methods=['GET','POST'])
@@ -202,6 +203,14 @@ def analyse():
             }
         }
     }
+        # 计算data部分和时间的哈希值
+        data_str = json.dumps(data['data'], sort_keys=True)+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        hash_object = hashlib.sha256(data_str.encode())
+        evidenceID = hash_object.hexdigest()
+
+        # 添加 'evidenceID' 属性到字典中
+        data['evidenceID'] = evidenceID
+
         json_data = json.dumps(data, indent=4)
         print(json_data)
         json_data_bytes = json_data.encode('utf-8')
@@ -218,7 +227,8 @@ def analyse():
 
         ##############存证发送#############    
         # print(packet)
-        # util.send_packet_tcp("192.168.43.243",50004,packet)
+        # response=util.send_packet_tcp("192.168.43.243",50004,packet)
+        # print(response)
 
         #########################删除操作日志#############################
         delete_operation_log=data["data"]["content"]
