@@ -1,0 +1,5 @@
+curl -X POST -F "file=@./Delete_Notification.json" http://127.0.0.1:5000/receive_files
+
+curl -X POST -F "file=@./Delete_Request.json" http://127.0.0.1:5000/receive_files
+
+curl -X POST -H "Content-Type: application/json" -d "{\"infoID\": \"u100000038\"}" http://127.0.0.1:5000/compare
